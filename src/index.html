@@ -12,8 +12,24 @@
       <input type="text" id="text-input" name="text-input" placeholder="Entrez votre texte ici"   required>
       <label for="range-input">Input personnalisé:</label>
       <input type="range" id="range-input" name="range-input" min="0" max="20" value="10">
+      <input type="file" name="image" accept="image/png, image/jpeg" required>
+
       <output id="range-value">10</output>
       <button type="submit">Envoyer</button>
     </form>    
   </body>
 </html>
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <title>Envoyer un fichier JPG à votre API Hug</title>
+  </head>
+  <body>
+    <h1>Envoyer un fichier JPG à votre API Hug</h1>
+    <form action="http://localhost:8000/image" method="post" enctype="multipart/form-data">
+      <label for="image">Sélectionnez une image au format JPG :</label><br>
+      <input type="file" id="image" name="image"><br><br>
+      <input type="submit" value="Envoyer">
+    </form>
+  </body>
+</html> -->
