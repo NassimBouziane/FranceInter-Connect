@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -8,28 +8,85 @@
   </head>
   <body>
     <form id="my-form">
+      <input type="file" name="image" accept="image/png, image/jpeg" required>
+
+      <button type="submit">Envoyer</button>
+    </form>
+    <form id="config-form">
       <label for="text-input">Input texte:</label>
       <input type="text" id="text-input" name="text-input" placeholder="Entrez votre texte ici"   required>
       <label for="range-input">Input personnalisé:</label>
       <input type="range" id="range-input" name="range-input" min="0" max="20" value="10">
-      <input type="file" name="image" accept="image/png, image/jpeg" required>
 
       <output id="range-value">10</output>
       <button type="submit">Envoyer</button>
-    </form>    
-  </body>
-</html>
-<!-- <!DOCTYPE html>
-<html>
-  <head>
-    <title>Envoyer un fichier JPG à votre API Hug</title>
-  </head>
-  <body>
-    <h1>Envoyer un fichier JPG à votre API Hug</h1>
-    <form action="http://localhost:8000/image" method="post" enctype="multipart/form-data">
-      <label for="image">Sélectionnez une image au format JPG :</label><br>
-      <input type="file" id="image" name="image"><br><br>
-      <input type="submit" value="Envoyer">
-    </form>
+    </form>        
   </body>
 </html> -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Tab System Example</title>
+    <link rel="stylesheet" href="index.css" />
+    <script src="formScript.js"></script>
+    <style>
+      .tab {
+        display: none;
+      }
+      .active {
+        display: block;
+      }
+      .tab-button {
+        cursor: pointer;
+      }
+      .tab-button.active {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <button class="tab-button active" data-tab-id="tab1">Image</button>
+      <button class="tab-button" data-tab-id="tab2">Configuration</button>
+    </div>
+    <div>
+      <div id="tab1" class="tab active">
+        <form id="my-form">
+          <input type="file" name="image" accept="image/png, image/jpeg" required>
+    
+          <button type="submit">Envoyer</button>
+        </form>
+      </div>
+      <div id="tab2" class="tab">
+        <form id="config-form">
+          <label for="text-input">Rentrez votre texte</label>
+          <input type="text" id="text-input" name="text-input" placeholder="Entrez votre texte ici" required>
+          <label for="range-input">Rentrez le nombre de personnes autorisées</label>
+          <input type="range" id="range-input" name="range-input" min="0" max="20" value="10">
+    
+          <output id="range-value">10</output>
+          <button type="submit">Envoyer</button>
+        </form>        
+      </div>
+    </div>
+    <script>const buttons = document.querySelectorAll('.tab-button');
+      const tabs = document.querySelectorAll('.tab');
+      
+      for (let i = 0; i < buttons.length; i++) {
+        const button = buttons[i];
+        const tabId = button.getAttribute('data-tab-id');
+        const tab = document.getElementById(tabId);
+      
+        button.addEventListener('click', () => {
+          for (let j = 0; j < buttons.length; j++) {
+            buttons[j].classList.remove('active');
+            tabs[j].classList.remove('active');
+          }
+          button.classList.add('active');
+          tab.classList.add('active');
+        });
+      }
+      </script>
+  </body>
+</html>

@@ -4,11 +4,26 @@ window.onload = function() {
   const form = document.getElementById('my-form');
   const defaultRangeValue = rangeInput.value;
   const input = document.querySelector('input[type="file"]');
+  const formConfig = document.getElementById('config-form')
 
 
   rangeInput.addEventListener('input', () => {
     rangeValue.textContent = rangeInput.value;
   });
+  formConfig.addEventListener('submit', (event) =>{
+    event.preventDefault();
+    const textInput = document.getElementById('text-input').value;
+    const rangeInput = document.getElementById('range-input').value;
+    console.log(`Texte : ${textInput}, Valeur : ${rangeInput}`);
+    rangeValue.textContent = defaultRangeValue;
+    fetch('http://localhost:8000/config',{
+      method:'POST',
+      body: JSON.stringify({textToSpeech:textInput, NumberOfPerson:rangeInput}),
+      headers: {'Content-Type': 'application/json'}
+    }).then(response => response.json()).catch(error => console.error(error));
+    formConfig.reset();
+  })
+  
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -23,12 +38,6 @@ window.onload = function() {
       console.log(data);
     })
     .catch(error => console.error(error));
-
-
-    const textInput = document.getElementById('text-input').value;
-    const rangeInput = document.getElementById('range-input').value;
-    console.log(`Texte : ${textInput}, Valeur : ${rangeInput}`);
-    rangeValue.textContent = defaultRangeValue
     form.reset();
   });
 };

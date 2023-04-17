@@ -1,6 +1,6 @@
 import hug
 import requests
-import os
+import json
 from azure.cognitiveservices.vision.computervision import ComputerVisionClient
 from msrest.authentication import CognitiveServicesCredentials
 import hug
@@ -31,3 +31,11 @@ def process_image(image):
     person_count = sum(obj['object'] == 'person' for obj in objects)
 
     return {'person_count': person_count}
+
+
+@hug.post('/config')
+def config(body):
+    with open('config.json', 'w') as f:
+        json.dump(body, f)
+    return body
+
