@@ -30,23 +30,10 @@
     <title>Tab System Example</title>
     <link rel="stylesheet" href="index.css" />
     <script src="formScript.js"></script>
-    <style>
-      .tab {
-        display: none;
-      }
-      .active {
-        display: block;
-      }
-      .tab-button {
-        cursor: pointer;
-      }
-      .tab-button.active {
-        font-weight: bold;
-      }
-    </style>
   </head>
   <body>
-    <div>
+    <div class="logo"></div>
+    <div class="tabs">
       <button class="tab-button active" data-tab-id="tab1">Image</button>
       <button class="tab-button" data-tab-id="tab2">Configuration</button>
     </div>
@@ -55,7 +42,7 @@
         <form id="my-form">
           <input type="file" name="image" accept="image/png, image/jpeg" required>
     
-          <button type="submit">Envoyer</button>
+          <button id="submit" type="submit">Envoyer</button>
         </form>
       </div>
       <div id="tab2" class="tab">
@@ -66,7 +53,7 @@
           <input type="range" id="range-input" name="range-input" min="0" max="20" value="10">
     
           <output id="range-value">10</output>
-          <button type="submit">Envoyer</button>
+          <button id="submit" type="submit">Envoyer</button>
         </form>        
       </div>
     </div>

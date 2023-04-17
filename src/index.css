@@ -4,6 +4,7 @@ body {
   margin: auto;
   max-width: 38rem;
   padding: 2rem;
+  background-image: url(https://img.freepik.com/free-vector/white-abstract-background_23-2148833155.jpg?w=1380&t=st=1681741012~exp=1681741612~hmac=ab31ce7b697279d347ed4dfaf0c4d93e176cd7be33c4415fd31ae65268cd6487);
 }
 /* Style du formulaire */
 #my-form {
@@ -61,4 +62,77 @@ input[type="range"]::-moz-range-thumb {
   background: #007bff;
   cursor: pointer;
   border-radius: 50%;
+}
+/* Tabs */
+.tabs {
+  display: flex;
+  justify-content: center; /* aligne les onglets horizontalement */
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 20px;
+  margin-top: 5%;
+}
+.logo {
+  display: block;
+  margin: 0 auto;
+  width: 100px;
+  height: 100px;
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/France_Inter_logo_2021.svg/640px-France_Inter_logo_2021.svg.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin-top: 5%;
+}
+
+/* Tab buttons */
+.tab-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #666;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.tab-button:hover {
+  color: #0072c7;
+}
+
+.tab-button.active {
+  color: #0072c7;
+  border-bottom: 3px solid #0072c7;
+}
+
+/* Tabs content */
+.tab {
+  display: none;
+  margin-bottom: 20px;
+}
+
+.active {
+  display: block;
+}
+#submit {
+  border: 0;
+  text-align: center;
+  display: inline-block;
+  padding: 14px;
+  width: 100px;
+  margin: 7px;
+  color: #ffffff;
+  background-color: #36a2eb;
+  border-radius: 8px;
+  font-family: "proxima-nova-soft", sans-serif;
+  font-weight: 600;
+  text-decoration: none;
+  transition: box-shadow 200ms ease-out;
 }
