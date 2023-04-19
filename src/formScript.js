@@ -58,6 +58,5 @@ window.onload = function() {
     .catch(error => console.error(error));
     form.reset();
     
-    //playAudio();
   });
 };

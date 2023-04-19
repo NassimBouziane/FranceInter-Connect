@@ -9,14 +9,6 @@ import json
 import uuid
 
 
-# # Add your Computer Vision subscription key and endpoint to your environment variables.
-# subscription_key = "eeaf3e3ab15b45f697be75bc5df5130b"
-# endpoint = "https://tic-clo2-vision.cognitiveservices.azure.com/vision/v3.2/analyze"
-
-# Instantiate a client object
-#computervision_client = ComputerVisionClient(endpoint, CognitiveServicesCredentials(subscription_key))
-
-
 @hug.post('/image')
 def process_image(image):
     print(image)
@@ -43,12 +35,9 @@ def process_image(image):
 
 @hug.post('/config')
 def config(body):
-        # Add your key and endpoint
     key = "13bbdefa382f40a7a68a79a05754a0f1"
     endpoint = "https://api.cognitive.microsofttranslator.com"
 
-    # location, also known as region.
-    # required if you're using a multi-service or regional (not global) resource. It can be found in the Azure portal on the Keys and Endpoint page.
     location = "francecentral"
 
     path = '/translate'
@@ -62,13 +51,11 @@ def config(body):
 
     headers = {
         'Ocp-Apim-Subscription-Key': key,
-        # location required if you're using a multi-service or regional (not global) resource.
         'Ocp-Apim-Subscription-Region': location,
         'Content-type': 'application/json',
         'X-ClientTraceId': str(uuid.uuid4())
     }
 
-    # You can pass more than one object in body.
     bodyEn = [{
         'text': body['textToSpeech']
     }]
@@ -90,17 +77,14 @@ def audioFr():
     speech_config = speechsdk.SpeechConfig(subscription="8fbc3d2068dd47cebfad7e2d95730d39", region="francecentral")
     audio_config = speechsdk.audio.AudioOutputConfig(filename="fr.wav")
 
-    # The language of the voice that speaks.
     speech_config.speech_synthesis_voice_name='fr-CA-JeanNeural'
 
     speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
 
-    # Get text from the console and synthesize to the default speaker.
     with open('config.json', 'r') as f:
 
         data = json.load(f)
 
-    # Accéder à la donnée souhaitée
     text = data['textToSpeech']
 
     print(text)
@@ -117,12 +101,10 @@ def audioEn():
 
     speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
 
-    # Get text from the console and synthesize to the default speaker.
     with open('config.json', 'r') as f:
 
         data = json.load(f)
 
-    # Accéder à la donnée souhaitée
     text = data['textToSpeechEN']
 
     print(text)
