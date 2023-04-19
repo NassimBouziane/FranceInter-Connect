@@ -34,28 +34,44 @@ window.onload = function() {
     const personNumber = document.getElementById('PersonNumber');
 
     formData.append('image', input.files[0]);
-   fetch('http://localhost:8000/image', {
+    fetch('http://localhost:8000/image', {
       method: 'POST',
       body: formData
     })
     .then(response => response.json())
     .then(data => {
-      personNumber.textContent ="Nombre de personnes dans la salle : "+ data.personCount+ " Nombre de personnes autorisées : "+ data.personAllowed ;
-      if(data.personCount > data.personAllowed){
+      personNumber.textContent = "Nombre de personnes dans la salle : " + data.personCount + " Nombre de personnes autorisées : " + data.personAllowed;
+      if (data.personCount > data.personAllowed) {
         const context = new AudioContext();
+        // On fetch d'abord avec l'image, S'il ya plus de plus personnes que de perosnnes autorisées,
+        // On fetch une deuxieme fois pour l'audio en FR, et une troisieme fois pour l'audio Anglais
         fetch('http://localhost:8000/fr.wav')
-            .then(response => response.arrayBuffer())
-            .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
-            .then(audioBuffer => {
-                const source = context.createBufferSource();
-                source.buffer = audioBuffer;
-                source.connect(context.destination);
-                source.start();
-            })
-            .catch(error => console.log(error));
-      }    
+          .then(response => response.arrayBuffer())
+          .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
+          .then(audioBuffer => {
+            const source = context.createBufferSource();
+            source.buffer = audioBuffer;
+            source.connect(context.destination);
+            source.start();
+            source.onended = function () {
+              fetch('http://localhost:8000/En.wav')
+                .then(response => response.arrayBuffer())
+                .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
+                .then(audioBuffer => {
+                  const source = context.createBufferSource();
+                  source.buffer = audioBuffer;
+                  source.connect(context.destination);
+                  source.start();
+                })
+                .catch(error => console.log(error));
+            }
+          })
+          .catch(error => console.log(error));
+      }
     })
     .catch(error => console.error(error));
+    
+    
     form.reset();
     
   });

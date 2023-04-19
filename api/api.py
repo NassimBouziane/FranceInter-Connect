@@ -116,3 +116,7 @@ def audioEn():
 @hug.get("/fr.wav", output=hug.output_format.file)
 def image():
     return "./fr.wav"
+
+@hug.get("/En.wav", output=hug.output_format.file)
+def image():
+    return "./en.wav"
