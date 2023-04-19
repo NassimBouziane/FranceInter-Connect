@@ -1,35 +1,11 @@
-<!-- <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>FranceInter </title>
-    <link rel="stylesheet" href="index.css" />
-    <script src="formScript.js"></script>
-  </head>
-  <body>
-    <form id="my-form">
-      <input type="file" name="image" accept="image/png, image/jpeg" required>
-
-      <button type="submit">Envoyer</button>
-    </form>
-    <form id="config-form">
-      <label for="text-input">Input texte:</label>
-      <input type="text" id="text-input" name="text-input" placeholder="Entrez votre texte ici"   required>
-      <label for="range-input">Input personnalisé:</label>
-      <input type="range" id="range-input" name="range-input" min="0" max="20" value="10">
-
-      <output id="range-value">10</output>
-      <button type="submit">Envoyer</button>
-    </form>        
-  </body>
-</html> -->
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Tab System Example</title>
+    <title>FranceInter Distanciation social</title>
     <link rel="stylesheet" href="index.css" />
-    <script src="formScript.js"></script>
+    <script src="formScript.js"></script>    
+
   </head>
   <body>
     <div class="logo"></div>
@@ -44,6 +20,8 @@
     
           <button id="submit" type="submit">Envoyer</button>
         </form>
+        <h1 id="PersonNumber"></h1>       
+
       </div>
       <div id="tab2" class="tab">
         <form id="config-form">
@@ -54,8 +32,9 @@
     
           <output id="range-value">10</output>
           <button id="submit" type="submit">Envoyer</button>
-        </form>        
+        </form> 
       </div>
+
     </div>
     <script>const buttons = document.querySelectorAll('.tab-button');
       const tabs = document.querySelectorAll('.tab');

@@ -1,4 +1,7 @@
+const fs = require('fs')
+
 window.onload = function() {
+
   const rangeInput = document.getElementById('range-input');
   const rangeValue = document.getElementById('range-value');
   const form = document.getElementById('my-form');
@@ -28,6 +31,8 @@ window.onload = function() {
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     const formData = new FormData();
+    const personNumber = document.getElementById('PersonNumber');
+
     formData.append('image', input.files[0]);
    fetch('http://localhost:8000/image', {
       method: 'POST',
@@ -35,9 +40,24 @@ window.onload = function() {
     })
     .then(response => response.json())
     .then(data => {
-      console.log(data);
+      personNumber.textContent ="Nombre de personnes dans la salle : "+ data.personCount+ " Nombre de personnes autorisées : "+ data.personAllowed ;
+      if(data.personCount > data.personAllowed){
+        const context = new AudioContext();
+        fetch('http://localhost:8000/fr.wav')
+            .then(response => response.arrayBuffer())
+            .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
+            .then(audioBuffer => {
+                const source = context.createBufferSource();
+                source.buffer = audioBuffer;
+                source.connect(context.destination);
+                source.start();
+            })
+            .catch(error => console.log(error));
+      }    
     })
     .catch(error => console.error(error));
     form.reset();
+    
+    //playAudio();
   });
 };
